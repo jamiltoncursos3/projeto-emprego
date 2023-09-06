@@ -1,0 +1,31 @@
+package com.jamiltondamasceno.testeempregopetz.presentation.viewmodels
+
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.jamiltondamasceno.testeempregopetz.data.model.Carta
+import com.jamiltondamasceno.testeempregopetz.data.repository.CartaRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+
+@HiltViewModel
+class CartoesViewModel @Inject constructor(
+    private val cartaRepository: CartaRepository
+) : ViewModel() {
+
+    private val _listaCartas = MutableLiveData<List<Carta>>()
+    val listaCartas: LiveData<List<Carta>>
+        get() = _listaCartas
+
+    fun recuperarCartoes(){
+
+        viewModelScope.launch {
+            val lista = cartaRepository.recuperarCartas()
+            _listaCartas.postValue( lista )
+        }
+
+    }
+
+}
