@@ -31,11 +31,11 @@ class CartaoAdapter(
                     onClick( carta )
                 }
 
-                Picasso.get()
-                    //.load( "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/9f1b15d759f1ddad40c9fabf8a6bccbabb525708891241bfd3053515dd6d2dc6.png" )
-                    .load( carta.img )
-                    //.load( "https://via.placeholder.com/150/92c952" )
-                    .into( imageCarta )
+                if( carta.img.isNotEmpty() ){
+                    Picasso.get()
+                        .load( carta.img )
+                        .into( imageCarta )
+                }
 
             }
 

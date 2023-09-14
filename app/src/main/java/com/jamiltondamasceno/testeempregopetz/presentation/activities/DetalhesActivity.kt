@@ -39,11 +39,12 @@ class DetalhesActivity : AppCompatActivity() {
             if( carta != null ){
 
                 with( binding ){
-
-                    Picasso.get()
-                        .load( carta?.img )
-                        .error( R.drawable.carta )
-                        .into( imageUrl )
+                    // img == null - img = ''
+                    if( carta.img.isNotEmpty() ){
+                        Picasso.get()
+                            .load( carta.img )
+                            .into( imageUrl )
+                    }
 
                     textId.text = carta?.cardId ?: ""
                     textName.text = carta?.name ?: ""

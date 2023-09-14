@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
 
             val listaCartasNova = mutableListOf<Carta>()
             listaCartas.forEach { carta ->
-                if ( carta.img != null )
+                if ( carta.img.isNotEmpty() || carta.img != null )
                     listaCartasNova.add(carta)
             }
 
